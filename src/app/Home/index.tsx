@@ -36,7 +36,7 @@ export function Home() {
     getItems();
   }, []);
 
-  function handleAdd() {
+  async function handleAdd() {
     if (!description.trim()) {
       return Alert.alert("Adicionar", "Informe a descrição para adicionar.");
     }
@@ -46,6 +46,9 @@ export function Home() {
       description,
       status: FilterStatus.PENDING,
     };
+    
+    await itemsStorage.add(newItem);
+    await getItems();
   }
 
   return (
